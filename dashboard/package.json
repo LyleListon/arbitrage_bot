@@ -1,0 +1,14 @@
+{
+  "name": "arbitrage-bot-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard for monitoring and controlling the arbitrage bot",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "init-db": "python init_db.py"
+  },
+  "dependencies": {
+    "web3": "^6.0.0",
+    "ethers": "^6.7.1"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "timestamp": 1729943805,
+  "parameters": {
+    "min_profit_threshold": 0.02,
+    "gas_price_gwei": 50,
+    "trade_sizes": [
+      0.1,
+      0.5,
+      1.0
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "Current Market",
+      "uniswap_price": 2000.0,
+      "sushiswap_price": 2002.5
+    },
+    {
+      "name": "High Volatility",
+      "uniswap_price": 2000.0,
+      "sushiswap_price": 2010.0
+    },
+    {
+      "name": "Low Volatility",
+      "uniswap_price": 2000.0,
+      "sushiswap_price": 2001.0
+    }
+  ],
+  "opportunities": []
+}

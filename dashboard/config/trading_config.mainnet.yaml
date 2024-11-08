@@ -1,0 +1,87 @@
+# Trading Configuration
+# @CONTEXT: Mainnet configuration
+# @LAST_POINT: 2024-01-31 - Using only live data sources
+# @CRITICAL: Real value at stake - Verify all addresses
+
+network:
+  name: "mainnet"
+  chain_id: 1
+  rpc_url: "${MAINNET_RPC_URL}"
+  wss_url: "${MAINNET_WSS_URL}"
+
+contracts:
+  price_registry: "0x47Fb2585D2C56Fe188D0E6ec628a38b74fCeeeDf"  # Chainlink Price Feed Registry
+  dex_registry: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"    # DEX Registry
+
+performance:
+  cache_duration: 5  # Price cache duration in seconds
+  max_pairs: 100    # Maximum number of trading pairs
+  max_exchanges: 10 # Maximum number of exchanges
+  max_gas_price: "${MAX_GAS_PRICE_GWEI}"
+  min_profit_threshold: "${MIN_PROFIT_THRESHOLD}"
+  max_slippage: "${MAX_SLIPPAGE}"
+
+monitoring:
+  max_price_deviation: 1.0  # Maximum allowed price deviation in percent
+  update_interval: 5        # Update interval in seconds
+  alert_threshold: 5.0      # Alert threshold for price changes
+  log_level: "INFO"
+  health_check_interval: "${HEALTH_CHECK_INTERVAL}"
+  max_block_delay: "${MAX_BLOCK_DELAY}"
+  min_peer_count: "${MIN_PEER_COUNT}"
+
+pairs:
+  ETH_USDC:
+    base_token: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"  # WETH
+    quote_token: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" # USDC
+    chainlink_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"  # ETH/USD
+    decimals: 18
+    min_profit_threshold: 0.5
+    max_slippage: 1.0
+    min_liquidity: 1000.0
+    is_active: true
+    display_name: "ETH/USDC"
+
+  WBTC_USDC:
+    base_token: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"  # WBTC
+    quote_token: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" # USDC
+    chainlink_feed: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c"  # BTC/USD
+    decimals: 8
+    min_profit_threshold: 0.5
+    max_slippage: 1.0
+    min_liquidity: 1000.0
+    is_active: true
+    display_name: "WBTC/USDC"
+
+exchanges:
+  uniswap_v2:
+    name: "Uniswap V2"
+    router: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"      # Router
+    factory: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"     # Factory
+    supported_pairs: ["ETH_USDC", "WBTC_USDC"]
+    fee_structure:
+      ETH_USDC: 0.003
+      WBTC_USDC: 0.003
+    min_order_size:
+      ETH_USDC: 0.01
+      WBTC_USDC: 0.001
+    max_order_size:
+      ETH_USDC: 100
+      WBTC_USDC: 10
+    is_active: true
+
+  sushiswap:
+    name: "SushiSwap"
+    router: "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F"      # Router
+    factory: "0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac"     # Factory
+    supported_pairs: ["ETH_USDC", "WBTC_USDC"]
+    fee_structure:
+      ETH_USDC: 0.003
+      WBTC_USDC: 0.003
+    min_order_size:
+      ETH_USDC: 0.01
+      WBTC_USDC: 0.001
+    max_order_size:
+      ETH_USDC: 100
+      WBTC_USDC: 10
+    is_active: true

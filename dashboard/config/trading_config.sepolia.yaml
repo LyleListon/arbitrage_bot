@@ -1,0 +1,66 @@
+# Sepolia Trading Configuration
+# @CONTEXT: Sepolia testnet specific configuration
+# @LAST_POINT: 2024-01-31 - Updated to use only Uniswap V3
+
+contracts:
+  arbitrage_bot: "0x16ce1A79a2bA282c02a398A958BeEBae6FE4f2BB"
+
+exchanges:
+  uniswap_v3:
+    factory: "0x0227628f3F023bb0B980b67D528571c95c6DaC1c"
+    fee_tiers: [500, 3000, 10000]
+    pools:
+      - fee_tier: 3000
+        name: "ETH/USDC"
+        token_in: "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9"
+        token_out: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f"
+      - fee_tier: 3000
+        name: "WBTC/USDC"
+        token_in: "0x29f2D40B0605204364af54EC677bD022dA425d03"
+        token_out: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f"
+    quoter: "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6"
+    router: "0x3bFA4769FB09eefC5a80d6E87c3B9C650f7Ae48E"
+
+monitoring:
+  alert_threshold: 5.0
+  health_check_interval: 30
+  log_level: "INFO"
+  max_block_delay: 60
+  max_price_deviation: 1.0
+  min_peer_count: 3
+  update_interval: 5
+
+network:
+  chain_id: 11155111
+  name: "sepolia"
+  rpc_url: "https://sepolia.infura.io/v3/863c326dab1a444dba3f41ae7a07ccce"
+  wss_url: "wss://sepolia.infura.io/ws/v3/863c326dab1a444dba3f41ae7a07ccce"
+
+pairs:
+  ETH_USDC:
+    base_token: "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9"  # WETH
+    chainlink_feed: "0x694AA1769357215DE4FAC081bf1f309aDC325306"  # ETH/USD
+    decimals: 18
+    display_name: "ETH/USDC"
+    is_active: true
+    max_slippage: 1.0
+    min_liquidity: 1000.0
+    min_profit_threshold: 0.5
+    quote_token: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f" # USDC
+  WBTC_USDC:
+    base_token: "0x29f2D40B0605204364af54EC677bD022dA425d03"  # Sepolia WBTC
+    chainlink_feed: "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43"  # BTC/USD
+    decimals: 8
+    display_name: "WBTC/USDC"
+    is_active: true
+    max_slippage: 1.0
+    min_liquidity: 1000.0
+    min_profit_threshold: 0.5
+    quote_token: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f" # USDC
+
+performance:
+  cache_duration: 5
+  max_gas_price: 50
+  max_pairs: 100
+  max_slippage: 0.01
+  min_profit_threshold: 0.01

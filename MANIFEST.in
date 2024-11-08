@@ -1,0 +1,26 @@
+# Include package requirements
+include requirements.txt
+
+# Include documentation
+include README.md
+include LICENSE
+include *.md
+
+# Include dashboard static files and templates
+recursive-include dashboard/static *
+recursive-include dashboard/templates *
+
+# Include environment example files
+include .env.example
+include .env.*.example
+
+# Include data provider documentation
+include dashboard/data_providers/README.md
+
+# Exclude development and temporary files
+global-exclude *.py[cod]
+global-exclude __pycache__
+global-exclude *.so
+global-exclude .DS_Store
+global-exclude *.db
+global-exclude *.log

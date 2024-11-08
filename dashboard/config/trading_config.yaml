@@ -1,0 +1,86 @@
+# Trading Configuration
+# @CONTEXT: Default configuration (points to Sepolia)
+# @LAST_POINT: 2024-01-31 - Using only live data sources
+
+network:
+  name: "sepolia"
+  chain_id: 11155111
+  rpc_url: "${SEPOLIA_RPC_URL}"
+  wss_url: "${SEPOLIA_WSS_URL}"
+
+contracts:
+  price_registry: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e"  # Chainlink Price Feed Registry
+  dex_registry: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"    # DEX Registry
+
+performance:
+  cache_duration: 5  # Price cache duration in seconds
+  max_pairs: 100    # Maximum number of trading pairs
+  max_exchanges: 10 # Maximum number of exchanges
+  max_gas_price: "${MAX_GAS_PRICE_GWEI}"
+  min_profit_threshold: "${MIN_PROFIT_THRESHOLD}"
+  max_slippage: "${MAX_SLIPPAGE}"
+
+monitoring:
+  max_price_deviation: 1.0  # Maximum allowed price deviation in percent
+  update_interval: 5        # Update interval in seconds
+  alert_threshold: 5.0      # Alert threshold for price changes
+  log_level: "INFO"
+  health_check_interval: "${HEALTH_CHECK_INTERVAL}"
+  max_block_delay: "${MAX_BLOCK_DELAY}"
+  min_peer_count: "${MIN_PEER_COUNT}"
+
+pairs:
+  ETH_USDC:
+    base_token: "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9"  # WETH (Sepolia)
+    quote_token: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f" # USDC (Sepolia)
+    chainlink_feed: "0x694AA1769357215DE4FAC081bf1f309aDC325306"  # ETH/USD
+    decimals: 18
+    min_profit_threshold: 0.5
+    max_slippage: 1.0
+    min_liquidity: 1000.0
+    is_active: true
+    display_name: "ETH/USDC"
+
+  WBTC_USDC:
+    base_token: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"  # WBTC (Sepolia)
+    quote_token: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f" # USDC (Sepolia)
+    chainlink_feed: "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43"  # BTC/USD
+    decimals: 8
+    min_profit_threshold: 0.5
+    max_slippage: 1.0
+    min_liquidity: 1000.0
+    is_active: true
+    display_name: "WBTC/USDC"
+
+exchanges:
+  uniswap_v2:
+    name: "Uniswap V2"
+    router: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"      # Router (Sepolia)
+    factory: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"     # Factory (Sepolia)
+    supported_pairs: ["ETH_USDC", "WBTC_USDC"]
+    fee_structure:
+      ETH_USDC: 0.003
+      WBTC_USDC: 0.003
+    min_order_size:
+      ETH_USDC: 0.01
+      WBTC_USDC: 0.001
+    max_order_size:
+      ETH_USDC: 100
+      WBTC_USDC: 10
+    is_active: true
+
+  sushiswap:
+    name: "SushiSwap"
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"      # Router (Sepolia)
+    factory: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4"     # Factory (Sepolia)
+    supported_pairs: ["ETH_USDC", "WBTC_USDC"]
+    fee_structure:
+      ETH_USDC: 0.003
+      WBTC_USDC: 0.003
+    min_order_size:
+      ETH_USDC: 0.01
+      WBTC_USDC: 0.001
+    max_order_size:
+      ETH_USDC: 100
+      WBTC_USDC: 10
+    is_active: true

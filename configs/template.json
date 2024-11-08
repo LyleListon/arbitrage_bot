@@ -1,0 +1,52 @@
+{
+    "network": "template",
+    "base_rpc_url": "NETWORK_RPC_URL",
+    "account_address": "WALLET_ADDRESS",
+    "private_key": "PRIVATE_KEY",
+    
+    "trading_params": {
+        "update_interval": 10,
+        "min_spread": 100,
+        "min_profit": "0.01",
+        "gas_limit": 500000,
+        "slippage_tolerance": 50,
+        "max_trade_size": "1.0"
+    },
+
+    "tokens": {
+        "WETH": "WETH_ADDRESS",
+        "USDC": "USDC_ADDRESS",
+        "USDT": "USDT_ADDRESS",
+        "DAI": "DAI_ADDRESS"
+    },
+
+    "dexes": {
+        "UniswapV3": {
+            "router": "UNISWAP_ROUTER",
+            "factory": "UNISWAP_FACTORY",
+            "quoter": "UNISWAP_QUOTER",
+            "type": "UniswapV3",
+            "gas_estimate": 180000
+        },
+        "SushiSwap": {
+            "router": "SUSHI_ROUTER",
+            "factory": "SUSHI_FACTORY",
+            "type": "SushiSwap",
+            "gas_estimate": 150000
+        }
+    },
+
+    "monitoring": {
+        "log_level": "INFO",
+        "alert_threshold": "0.05",
+        "max_gas_price": "100",
+        "health_check_interval": 60
+    },
+
+    "advanced": {
+        "retry_attempts": 3,
+        "timeout": 30,
+        "block_confirmation": 2,
+        "max_pending_txs": 5
+    }
+}

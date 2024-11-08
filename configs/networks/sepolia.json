@@ -1,0 +1,45 @@
+{
+    "network": "sepolia",
+    "base_rpc_url": "https://sepolia.infura.io/v3/YOUR_INFURA_KEY",
+    "account_address": "WALLET_ADDRESS",
+    
+    "trading_params": {
+        "update_interval": 10,
+        "min_spread": 100,
+        "min_profit": "0.01",
+        "gas_limit": 300000,
+        "slippage_tolerance": 50,
+        "max_trade_size": "0.1"
+    },
+
+    "tokens": {
+        "WETH": "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+        "USDC": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+        "LINK": "0x779877A7B0D9E8603169DdbD7836e478b4624789",
+        "DAI": "0x68194a729C2450ad26072b3D33ADaCbcef39D574"
+    },
+
+    "dexes": {
+        "UniswapV3": {
+            "router": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+            "factory": "0x0227628f3F023bb0B980b67D528571c95c6DaC1c",
+            "quoter": "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+            "type": "UniswapV3",
+            "gas_estimate": 180000
+        }
+    },
+
+    "monitoring": {
+        "log_level": "DEBUG",
+        "alert_threshold": "0.01",
+        "max_gas_price": "50",
+        "health_check_interval": 30
+    },
+
+    "advanced": {
+        "retry_attempts": 3,
+        "timeout": 30,
+        "block_confirmation": 1,
+        "max_pending_txs": 3
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "created_at": "2024-10-26T07:48:39.807035",
+  "address": "0x63899b3a1838dcd736ca3db26565afa3ab6b0d45",
+  "private_key": "8c77cad57e32f803b2758a7062e4d4e14ec2f524d0e2c6152db6ecd2eb43d4d1",
+  "network": "mainnet",
+  "purpose": "arbitrage_bot_deployment",
+  "warnings": [
+    "STORE THIS INFORMATION SECURELY",
+    "NEVER SHARE THE PRIVATE KEY",
+    "USE ONLY FOR DEPLOYMENT",
+    "FUND ONLY WITH REQUIRED AMOUNT"
+  ]
+}

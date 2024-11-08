@@ -1,0 +1,119 @@
+# Trading Configuration for Development
+
+# Network Settings
+network:
+  chain_id: 11155111  # Sepolia
+  rpc_url: "https://eth-sepolia.g.alchemy.com/v2/kRXhWVt8YU_8LnGS20145F5uBDFbL_k0"
+  wss_url: "wss://eth-sepolia.g.alchemy.com/v2/kRXhWVt8YU_8LnGS20145F5uBDFbL_k0"
+
+# Contract Addresses
+contracts:
+  arbitrage_bot: "0xF48C6ED8C0b0F152d92dE9069Fd19E3CE8EF874B"
+  dex_registry: "0x49B81a694351FA7c4a12286425dc916A601B0677"
+  price_feed_registry: "0x47Fb2585D2C56Fe188D0E6ec628a38b74fCeeeDf"
+  flash_loan_provider: "0x0496275d34753A48320CA58103d5220d394FF77F"
+
+# Exchange Configuration
+exchanges:
+  uniswap_v2:
+    name: "Uniswap V2"
+    factory: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"
+    router: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+    fee: 0.003
+    is_active: true
+    fee_structure:
+      ETH_USDC: 0.003
+      ETH_USDT: 0.003
+      USDC_USDT: 0.003
+    min_order_size:
+      ETH_USDC: 0.01
+      ETH_USDT: 0.01
+      USDC_USDT: 100
+  uniswap_v3:
+    name: "Uniswap V3"
+    factory: "0x1F98431c8aD98523631AE4a59f267346ea31F984"
+    router: "0xE592427A0AEce92De3Edee1F18E0157C05861564"
+    quoter: "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6"
+    fee_tiers: [500, 3000, 10000]
+    is_active: true
+    fee_structure:
+      ETH_USDC: 0.003
+      ETH_USDT: 0.003
+      USDC_USDT: 0.003
+    min_order_size:
+      ETH_USDC: 0.01
+      ETH_USDT: 0.01
+      USDC_USDT: 100
+  sushiswap:
+    name: "SushiSwap"
+    factory: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4"
+    router: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"
+    fee: 0.003
+    is_active: true
+    fee_structure:
+      ETH_USDC: 0.003
+      ETH_USDT: 0.003
+      USDC_USDT: 0.003
+    min_order_size:
+      ETH_USDC: 0.01
+      ETH_USDT: 0.01
+      USDC_USDT: 100
+
+# Trading Pairs Configuration
+pairs:
+  ETH_USDC:
+    token0: "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9"  # Sepolia ETH
+    token1: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f"  # Sepolia USDC
+    base_token: "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9"
+    quote_token: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f"
+    min_amount: "0.1"
+    max_amount: "1.0"
+    chainlink_feed: "0x694AA1769357215DE4FAC081bf1f309aDC325306"  # ETH/USD on Sepolia
+    is_active: true
+    min_profit_threshold: 0.5
+  ETH_USDT:
+    token0: "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9"  # Sepolia ETH
+    token1: "0x6175a8471C2122f4b447D0f567dE3A73d5E4Db8E"  # Sepolia USDT
+    base_token: "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9"
+    quote_token: "0x6175a8471C2122f4b447D0f567dE3A73d5E4Db8E"
+    min_amount: "0.1"
+    max_amount: "1.0"
+    chainlink_feed: "0x694AA1769357215DE4FAC081bf1f309aDC325306"  # ETH/USD on Sepolia
+    is_active: true
+    min_profit_threshold: 0.5
+  USDC_USDT:
+    token0: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f"  # Sepolia USDC
+    token1: "0x6175a8471C2122f4b447D0f567dE3A73d5E4Db8E"  # Sepolia USDT
+    base_token: "0xda9d4f9b69ac6C22e444eD9aF0CfC043b7a7f53f"
+    quote_token: "0x6175a8471C2122f4b447D0f567dE3A73d5E4Db8E"
+    min_amount: "100"
+    max_amount: "1000"
+    chainlink_feed: "0xA2F78ab2355fe2f984D808B5CeE7FD0A93D5270E"  # USDC/USD on Sepolia
+    is_active: true
+    min_profit_threshold: 0.5
+
+# Monitoring
+monitoring:
+  gas_check_interval: 30
+  health_check_interval: 30
+  log_level: "INFO"
+  price_update_interval: 10
+
+# Safety Features
+safety:
+  cool_down_period: 60  # Seconds between trades
+  emergency_shutdown_enabled: true
+  max_slippage: 0.02  # 2%
+  min_liquidity: "1000"  # Minimum pool liquidity in USD
+
+# Trading Parameters
+trading:
+  base_token: "ETH"
+  gas_price_limit: "50"
+  max_trade_size: "0.1"
+  min_profit_threshold: 0.01  # 1%
+  quote_tokens:
+    - "USDC"
+    - "USDT"
+    - "DAI"
+  slippage_tolerance: 0.01  # 1%

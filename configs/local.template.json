@@ -1,0 +1,26 @@
+{
+    "# Instructions": "Copy this file to local.json and fill in your private information. Never commit local.json to git.",
+    
+    "# Network Settings": {
+        "base_rpc_url": "YOUR_RPC_URL (e.g., https://sepolia.infura.io/v3/YOUR_KEY)",
+        "account_address": "YOUR_WALLET_ADDRESS",
+        "private_key": "YOUR_PRIVATE_KEY"
+    },
+
+    "# Optional Overrides": {
+        "trading_params": {
+            "max_trade_size": "OPTIONAL_OVERRIDE",
+            "min_profit": "OPTIONAL_OVERRIDE"
+        },
+        "monitoring": {
+            "log_level": "OPTIONAL_OVERRIDE",
+            "alert_threshold": "OPTIONAL_OVERRIDE"
+        }
+    },
+
+    "# Remove comments and unused fields before using": "",
+    
+    "base_rpc_url": "",
+    "account_address": "",
+    "private_key": ""
+}

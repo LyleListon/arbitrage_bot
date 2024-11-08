@@ -1,0 +1,17 @@
+{
+  "network": "goerli",
+  "contracts": {
+    "factory": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+    "router": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+    "quoter": "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+    "positionManager": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+    "swapRouter02": "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45"
+  },
+  "tokens": {
+    "WETH": "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+    "USDC": "0x07865c6e87b9f70255377e024ace6630c1eaa37f"
+  },
+  "pools": {
+    "WETH/USDC-0.3%": "0x6337B3caf9C5236c7f3D1694410776119eDaF9FA"
+  }
+}
