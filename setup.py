@@ -8,7 +8,7 @@ setup(
     install_requires=[
         'flask==2.3.2',
         'flask-socketio==5.3.6',
-        'flask-cors==4.0.0',
+        'flask-cors==4.0.2',
         'eventlet==0.33.3',
         'python-dotenv==1.0.0',
         'web3==6.5.0',
