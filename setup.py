@@ -9,7 +9,7 @@ setup(
         'flask==2.3.2',
         'flask-socketio==5.3.6',
         'flask-cors==4.0.0',
-        'eventlet==0.33.3',
+        'eventlet==0.35.2',
         'python-dotenv==1.0.0',
         'web3==6.5.0',
         'eth-account==0.9.0',
