@@ -26,7 +26,7 @@ black==23.11.0
 flake8==6.1.0
 
 # Utilities
-requests==2.31.0
+requests==2.32.2
 aiohttp==3.9.1
 asyncio==3.4.3
 dataclasses-json==0.6.3

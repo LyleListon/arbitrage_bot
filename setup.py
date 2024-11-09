@@ -13,7 +13,7 @@ setup(
         'python-dotenv==1.0.0',
         'web3==6.5.0',
         'eth-account==0.9.0',
-        'requests==2.31.0',
+        'requests==2.32.2',
         'tenacity==8.2.2',
         'pandas',
         'numpy'
