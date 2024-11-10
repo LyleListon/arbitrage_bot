@@ -6,14 +6,14 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'flask==2.3.2',
+        'flask==3.0.3',
         'flask-socketio==5.3.6',
-        'flask-cors==4.0.0',
-        'eventlet==0.33.3',
+        'flask-cors==4.0.2',
+        'eventlet==0.35.2',
         'python-dotenv==1.0.0',
         'web3==6.5.0',
         'eth-account==0.9.0',
-        'requests==2.31.0',
+        'requests==2.32.2',
         'tenacity==8.2.2',
         'pandas',
         'numpy'

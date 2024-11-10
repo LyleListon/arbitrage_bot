@@ -1,5 +1,5 @@
 # Core dependencies
-Flask==2.3.3
+Flask==3.0.3
 Flask-SocketIO==5.3.6
 Flask-CORS==4.0.2
 python-dotenv==1.0.0
