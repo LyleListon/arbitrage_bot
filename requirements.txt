@@ -10,5 +10,5 @@ PyYAML==6.0.2
 psutil==6.1.0
 gevent==23.9.0
 requests==2.32.3
-gevent==24.10.3
+gevent==24.11.1
 requests==2.32.3
