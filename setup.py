@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'flask==3.0.3',
+        'flask==3.1.0',
         'flask-socketio==5.4.1',
         'flask-cors==5.0.0',
         'eventlet==0.37.0',
