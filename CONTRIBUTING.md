@@ -1,76 +1,155 @@
 # Contributing to Arbitrage Bot
 
-Thank you for your interest in contributing to the Arbitrage Bot project! This document provides guidelines and instructions for contributing.
+## Welcome Contributors!
+
+We appreciate your interest in improving the Arbitrage Bot project. This document provides guidelines for contributing effectively.
 
 ## Code of Conduct
 
-By participating in this project, you agree to maintain a respectful and constructive environment for all contributors.
+- Be respectful and inclusive
+- Provide constructive feedback
+- Collaborate professionally
+- Prioritize project goals
 
-## How to Contribute
+## Getting Started
 
-1. Fork the repository
-2. Create a new branch for your feature/fix: `git checkout -b feature-name`
-3. Make your changes
-4. Write/update tests if necessary
-5. Run tests locally to ensure everything passes
-6. Commit your changes: `git commit -m "Description of changes"`
-7. Push to your fork: `git push origin feature-name`
-8. Create a Pull Request
+### Prerequisites
+- Python 3.9+
+- Node.js 14+
+- Git
+- Development environment setup (see QUICK_START_GUIDE.md)
 
-## Pull Request Process
+## Contribution Workflow
 
-1. Update the README.md with details of changes if needed
-2. Update the documentation if you're changing functionality
-3. Ensure all tests pass
-4. Link any relevant issues in your PR description
-5. Request review from maintainers
+### 1. Fork the Repository
+1. Fork the main repository
+2. Clone your forked repository
+3. Create a new branch for your feature
 
-## Development Setup
+```bash
+git clone https://github.com/[your-username]/arbitrage-bot.git
+cd arbitrage-bot
+git checkout -b feature/your-feature-name
+```
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   pip install -r requirements.txt
-   ```
-3. Copy `configs/local.template.json` to `configs/local.json` and configure
-4. Run tests to ensure everything is set up correctly
+### 2. Development Guidelines
 
-## Testing
+#### Code Style
+- Follow PEP 8 for Python
+- Use Black for code formatting
+- Use type hints
+- Write docstrings for all functions and classes
 
-- Run JavaScript tests: `npx hardhat test`
-- Run Python tests: `python -m pytest test/`
+#### Linting and Formatting
+```bash
+# Run linters
+pylint **/*.py
+black .
+mypy .
+```
 
-## Reporting Bugs
+### 3. Testing
 
-When reporting bugs, please include:
+#### Run Test Suite
+```bash
+python -m pytest tests/
+```
 
-- Clear description of the issue
-- Steps to reproduce
-- Expected vs actual behavior
-- Environment details (OS, Node.js version, Python version)
-- Relevant logs or error messages
+#### Test Coverage
+- Aim for >80% test coverage
+- Write tests for new features
+- Test edge cases and error scenarios
 
-## Feature Requests
+### 4. Commit Guidelines
+- Use conventional commits
+- Write clear, descriptive commit messages
+- Small, focused commits are preferred
 
-For feature requests, please:
+Example commit message:
+```
+feat(dashboard): add real-time price tracking
 
-- Clearly describe the feature
-- Explain why it would be useful
-- Provide examples of how it would be used
-- Consider potential impacts on existing functionality
+- Implement WebSocket connection for live prices
+- Add error handling for connection failures
+- Update dashboard UI to reflect real-time data
+```
 
-## Questions or Need Help?
+### 5. Pull Request Process
+1. Ensure all tests pass
+2. Update documentation if needed
+3. Squash commits for clean history
+4. Describe changes in PR description
 
-- Create an issue with the "question" label
-- Provide as much context as possible
+### 6. Code Review Process
+- At least two maintainers must approve
+- Address review comments promptly
+- Be open to constructive feedback
 
-## Security Issues
+## Contribution Areas
 
-For security issues, please DO NOT create a public issue. Instead:
+### 1. Smart Contracts
+- Solidity improvements
+- Security enhancements
+- Gas optimization
 
-1. Document the issue
-2. Send details privately to the maintainers
-3. Allow time for a response before disclosure
+### 2. Machine Learning
+- Model performance improvements
+- New feature engineering techniques
+- Predictive strategy enhancements
 
-Thank you for contributing!
+### 3. Dashboard
+- UI/UX improvements
+- Performance optimizations
+- New visualization features
+
+### 4. Infrastructure
+- Deployment scripts
+- Monitoring improvements
+- Cloud platform integrations
+
+## Security Considerations
+- Never commit sensitive information
+- Report security vulnerabilities privately
+- Follow blockchain security best practices
+
+## Performance Optimization
+- Profile code before optimization
+- Benchmark changes
+- Minimize computational complexity
+
+## Documentation
+- Keep documentation up-to-date
+- Document design decisions
+- Explain complex implementations
+
+## Communication Channels
+- GitHub Issues for bug reports
+- Discord for real-time discussions
+- Email: arbitrage-bot-support@example.com
+
+## Reward and Recognition
+- Significant contributors listed in README
+- Potential bounties for critical improvements
+- Open-source contribution certificates
+
+## Legal
+- Contributions are under MIT License
+- CLA may be required for substantial changes
+
+## Maintainer Contacts
+- Lead Developer: [Name] ([email])
+- ML Specialist: [Name] ([email])
+- DevOps Engineer: [Name] ([email])
+
+## Version Compatibility
+- Ensure compatibility with:
+  - Python 3.9+
+  - Web3.py 5.x
+  - Latest blockchain network versions
+
+## Final Notes
+- Quality over quantity
+- Patience in review process
+- Continuous learning attitude
+
+Thank you for contributing to Arbitrage Bot!

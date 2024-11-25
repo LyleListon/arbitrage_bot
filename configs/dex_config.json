@@ -1,0 +1,4 @@
+{
+  "networks": ["arbitrum", "ethereum", "binance_smart_chain"],
+  "dexes": ["pancakeswap", "sushiswap", "camelot", "uniswap"]
+}
