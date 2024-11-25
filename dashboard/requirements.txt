@@ -7,7 +7,7 @@ gevent==24.11.1
 gevent-websocket==0.10.1
 
 # Web3 and blockchain
-web3==7.5.0
+web3==7.6.0
 eth-account==0.13.4
 eth-utils==5.1.0
 
@@ -27,6 +27,6 @@ flake8==7.1.1
 
 # Utilities
 requests==2.32.3
-aiohttp==3.11.2
+aiohttp==3.11.7
 asyncio==3.4.3
 dataclasses-json==0.6.7
