@@ -19,7 +19,7 @@ asyncio>=3.4.3
 aiodns>=3.0.0
 
 # Networking and Concurrency
-gevent==24.11.1
+gevent==24.10.1  # Updated to address race condition
 greenlet>=2.0.0
 
 # Optional Performance Libraries
@@ -28,8 +28,8 @@ aiohttp>=3.8.0
 # Web Framework and WebSocket Support
 Flask==3.1.0
 Flask-SocketIO==5.4.1
-Flask-CORS==5.0.0
-Jinja2==3.1.4
+Flask-CORS==4.0.1  # Updated to address CORS vulnerabilities
+Jinja2==3.1.3  # Updated to address SSTI vulnerability
 MarkupSafe==3.0.2
 Werkzeug==3.1.3
 blinker==1.9.0
