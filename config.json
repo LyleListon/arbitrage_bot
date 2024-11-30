@@ -3,11 +3,33 @@
     "account_address": "YOUR_ADDRESS",
     "private_key": "YOUR_PRIVATE_KEY",
     "update_interval": 10,
-    "min_spread": 100,
-    "min_profit": "0.01",
-    "gas_limit": 500000,
-    "slippage_tolerance": 50,
-    "max_trade_size": "1.0",
+    "security": {
+        "max_trade_size": "1.0",
+        "min_profit_threshold": "0.01",
+        "max_slippage": 50,
+        "min_liquidity_ratio": 0.1,
+        "max_gas_price": 100,
+        "max_exposure_percentage": 5,
+        "mev_time_window": 60,
+        "mev_similarity_threshold": 0.8,
+        "mev_risk_levels": {
+            "low": 5,
+            "medium": 10,
+            "high": 20
+        }
+    },
+    "execution": {
+        "max_concurrent_trades": 3,
+        "max_daily_trades": 100,
+        "max_similar_pending_trades": 3
+    },
+    "flash_loan": {
+        "enabled": false,
+        "min_amount": "0.1",
+        "max_amount": "10.0",
+        "fee_percentage": 0.09,
+        "supported_tokens": ["WETH", "USDC", "USDT", "DAI"]
+    },
     "tokens": {
         "WETH": "0x4200000000000000000000000000000000000006",
         "USDC": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",

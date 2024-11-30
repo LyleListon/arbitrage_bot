@@ -1,14 +1,16 @@
 {
+    "base": {
+        "mainnet": {
+            "primary": "https://base-mainnet.infura.io/v3/863c326dab1a444dba3f41ae7a07ccce",
+            "secondary": "https://mainnet.base.org",
+            "fallback": "https://base.gateway.tenderly.co"
+        }
+    },
     "ethereum": {
         "mainnet": {
-            "primary": "https://mainnet.infura.io/v3/${INFURA_PROJECT_ID}",
-            "secondary": "https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}",
-            "fallback": "https://cloudflare-eth.com/"
-        },
-        "sepolia": {
-            "primary": "https://sepolia.infura.io/v3/${INFURA_PROJECT_ID}",
-            "secondary": "https://eth-sepolia.public.blastapi.io",
-            "fallback": "https://rpc.sepolia.org"
+            "primary": "https://mainnet.infura.io/v3/863c326dab1a444dba3f41ae7a07ccce",
+            "secondary": "https://eth-mainnet.g.alchemy.com/v2/863c326dab1a444dba3f41ae7a07ccce",
+            "fallback": "https://ethereum.publicnode.com"
         }
     },
     "binance_smart_chain": {
@@ -16,47 +18,13 @@
             "primary": "https://bsc-dataseed.binance.org/",
             "secondary": "https://bsc-dataseed1.defibit.io/",
             "fallback": "https://bsc-dataseed1.ninicoin.io/"
-        },
-        "testnet": {
-            "primary": "https://data-seed-prebsc-1-s1.binance.org:8545/",
-            "secondary": "https://data-seed-prebsc-2-s1.binance.org:8545/",
-            "fallback": "https://data-seed-prebsc-1-s2.binance.org:8545/"
         }
     },
     "polygon": {
         "mainnet": {
-            "primary": "https://polygon-rpc.com",
-            "secondary": "https://rpc-mainnet.maticvigil.com",
-            "fallback": "https://matic-mainnet.chainstacklabs.com"
-        },
-        "mumbai_testnet": {
-            "primary": "https://rpc-mumbai.maticvigil.com",
-            "secondary": "https://matic-testnet-archive-rpc.bwarelabs.com",
-            "fallback": "https://rpc-mumbai.polygon.technology"
-        }
-    },
-    "arbitrum": {
-        "mainnet": {
-            "primary": "https://arb1.arbitrum.io/rpc",
-            "secondary": "https://arbitrum-one.public.blastapi.io",
-            "fallback": "https://rpc.ankr.com/arbitrum"
-        },
-        "goerli_testnet": {
-            "primary": "https://goerli-rollup.arbitrum.io/rpc",
-            "secondary": "https://arbitrum-goerli.public.blastapi.io",
-            "fallback": "https://goerli-rollup.arbitrum.io/rpc"
-        }
-    },
-    "optimism": {
-        "mainnet": {
-            "primary": "https://mainnet.optimism.io",
-            "secondary": "https://optimism-mainnet.public.blastapi.io",
-            "fallback": "https://rpc.ankr.com/optimism"
-        },
-        "goerli_testnet": {
-            "primary": "https://goerli.optimism.io",
-            "secondary": "https://optimism-goerli.public.blastapi.io",
-            "fallback": "https://goerli.optimism.io"
+            "primary": "https://polygon-mainnet.infura.io/v3/863c326dab1a444dba3f41ae7a07ccce",
+            "secondary": "https://polygon-rpc.com",
+            "fallback": "https://polygon.gateway.tenderly.co"
         }
     }
 }

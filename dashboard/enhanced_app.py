@@ -1,26 +1,12 @@
-"""
-Enhanced arbitrage bot dashboard
-
-@CONTEXT: Flask-based web dashboard with improved reliability and monitoring
-@LAST_POINT: 2024-01-31 - Added performance tracking and alerts
-"""
+"""Enhanced arbitrage bot dashboard"""
 
 import os
 import logging
-import argparse
 from flask import Flask, jsonify, render_template, send_from_directory
 from flask_socketio import SocketIO, emit
-try:
-    from flask_cors import CORS
-except ImportError:
-    print("Error: flask-cors package is required. Install with: pip install flask-cors")
-    raise
-from web3 import Web3
-from dotenv import load_dotenv
+from flask_cors import CORS
 
-from dashboard.data_providers.live_provider import LiveDataProvider
 from dashboard.monitoring import init_monitoring, monitor
-from dashboard.config.config_loader import ConfigLoader
 
 # Configure logging
 logging.basicConfig(
@@ -29,29 +15,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
-def parse_args():
-    """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='Run the enhanced arbitrage dashboard')
-    parser.add_argument(
-        '--network',
-        type=str,
-        default='development',
-        help='Network to run on (development/sepolia/mainnet)'
-    )
-    parser.add_argument(
-        '--port',
-        type=int,
-        default=5002,
-        help='Port to run the dashboard on'
-    )
-    return parser.parse_args()
-
-
 class DashboardApp:
     """Dashboard application with enhanced monitoring and alerts"""
     
-    def __init__(self, network: str = "development"):
+    def __init__(self, network: str = "base"):
         """Initialize dashboard application"""
         self.network = network
         self.app = Flask(__name__)
@@ -60,9 +27,9 @@ class DashboardApp:
         self.app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
         
         # Initialize monitoring
-        init_monitoring(self.app)
+        self.monitor = init_monitoring(self.app)
         
-        # Initialize SocketIO with improved reliability
+        # Initialize SocketIO
         self.socketio = SocketIO(
             self.app,
             cors_allowed_origins="*",
@@ -70,12 +37,8 @@ class DashboardApp:
             logger=True,
             engineio_logger=True,
             ping_timeout=5,
-            ping_interval=2,
-            max_http_buffer_size=1e8
+            ping_interval=2
         )
-        
-        # Load network configuration
-        self._load_network_config()
         
         # Set up routes
         self._setup_routes()
@@ -84,40 +47,6 @@ class DashboardApp:
         self._setup_websocket_handlers()
         
         logger.info(f"Enhanced dashboard app initialized for network: {network}")
-    
-    def _load_network_config(self):
-        """Load network-specific configuration"""
-        try:
-            # Load environment variables
-            env_path = os.path.join(os.path.dirname(__file__), f'.env.{self.network}')
-            load_dotenv(env_path)
-            
-            # Load configuration
-            config_loader = ConfigLoader(network=self.network)
-            self.config = config_loader.load_config()
-            
-            # Initialize Web3
-            network_config = config_loader.get_network_config()
-            self.w3 = Web3(Web3.HTTPProvider(network_config.rpc_url))
-            
-            if not self.w3.is_connected():
-                raise Exception(f"Failed to connect to {self.network} network")
-            
-            # Set up account if private key available
-            private_key = os.getenv('PRIVATE_KEY')
-            if private_key:
-                self.account = self.w3.eth.account.from_key(private_key)
-            else:
-                logger.warning("No private key found")
-                self.account = None
-            
-            # Initialize data provider
-            self.data_provider = LiveDataProvider(network=self.network)
-            logger.info(f"Data provider initialized: {self.data_provider.__class__.__name__}")
-            
-        except Exception as e:
-            logger.error(f"Error loading network configuration: {e}")
-            raise
     
     def _setup_routes(self):
         """Set up Flask routes"""
@@ -131,36 +60,23 @@ class DashboardApp:
                 logger.error(f"Error rendering index: {e}")
                 return jsonify({'status': 'error', 'message': str(e)}), 500
         
-        @self.app.route('/favicon.ico')
-        def favicon():
-            """Serve favicon"""
-            return send_from_directory(
-                os.path.join(self.app.root_path, 'static'),
-                'favicon.ico',
-                mimetype='image/vnd.microsoft.icon'
-            )
-        
         @self.app.route('/api/stats')
         def get_stats():
             """Get current statistics with enhanced metrics"""
             try:
-                # Get market data
-                market_data = self.data_provider.get_market_data()
-                
                 # Get system metrics
-                metrics = monitor.get_current_metrics()
+                metrics = self.monitor.get_current_metrics()
                 
                 # Get performance data
-                performance_data = monitor.get_performance_data()
+                performance_data = self.monitor.get_performance_data()
                 
                 # Get system health
-                health = monitor.get_system_health()
+                health = self.monitor.get_system_health()
                 
                 stats = {
                     'status': 'success',
                     'data': {
                         'network': self.network,
-                        'market_data': market_data,
                         'system_metrics': {
                             'cpu_percent': metrics.cpu_percent if metrics else None,
                             'memory_percent': metrics.memory_percent if metrics else None,
@@ -168,9 +84,14 @@ class DashboardApp:
                             'active_connections': metrics.active_connections if metrics else None,
                             'error_rate': metrics.error_rate if metrics else None
                         },
-                        'performance': performance_data.get('metrics', {}),
-                        'trade_history': performance_data.get('recent_trades', []),
-                        'alerts': performance_data.get('alerts', []),
+                        'performance': {
+                            'total_opportunities': performance_data.get('total_opportunities', 0),
+                            'average_spread': performance_data.get('average_spread', 0.0),
+                            'average_profit': performance_data.get('average_profit', 0.0),
+                            'total_profit': performance_data.get('total_profit', 0.0),
+                            'executed_trades': performance_data.get('executed_trades', 0)
+                        },
+                        'price_data': performance_data.get('price_data', []),
                         'health': health
                     }
                 }
@@ -187,16 +108,31 @@ class DashboardApp:
                 }), 500
     
     def _setup_websocket_handlers(self):
-        """Set up WebSocket event handlers with improved reliability"""
+        """Set up WebSocket event handlers"""
         
         @self.socketio.on('connect', namespace='/dashboard')
         def handle_connect():
             """Handle client connection"""
             try:
-                # Send immediate update
+                # Get current stats
                 stats = self.app.view_functions['get_stats']()
-                emit('stats_update', stats.json['data'])
+                data = stats.get_json() if hasattr(stats, 'get_json') else stats
+                
+                # Send initial update
+                emit('stats_update', data.get('data', {}))
                 logger.info("Client connected and received initial update")
+                
+                # Set up periodic updates
+                @self.socketio.on('request_update', namespace='/dashboard')
+                def handle_update_request():
+                    try:
+                        stats = self.app.view_functions['get_stats']()
+                        data = stats.get_json() if hasattr(stats, 'get_json') else stats
+                        emit('stats_update', data.get('data', {}))
+                    except Exception as e:
+                        logger.error(f"Error sending update: {e}")
+                        emit('error', {'message': str(e)})
+                
             except Exception as e:
                 logger.error(f"Error sending initial update: {e}")
                 emit('error', {'message': str(e)})
@@ -227,17 +163,14 @@ class DashboardApp:
             logger.error(f"Error running dashboard: {e}")
             raise
 
-
 def main():
     """Main entry point for the dashboard application"""
     try:
-        args = parse_args()
-        app = DashboardApp(network=args.network)
-        app.run(port=args.port)
+        app = DashboardApp(network='base')
+        app.run(port=5002)
     except Exception as e:
         logger.error(f"Error running dashboard: {e}")
         raise
-
 
 if __name__ == '__main__':
     main()

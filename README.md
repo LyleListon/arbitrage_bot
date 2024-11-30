@@ -1,107 +1,133 @@
-# Arbitrage Bot: Cross-Chain Trading Platform
+# Arbitrage Trading Bot
 
-## Overview
-Arbitrage Bot is an advanced blockchain trading platform designed to identify and execute profitable arbitrage opportunities across multiple decentralized exchanges (DEXs) and blockchain networks.
+A sophisticated arbitrage trading bot for cryptocurrency markets, focusing on cross-DEX opportunities on the Base network.
 
-![Build Status](https://img.shields.io/github/workflow/status/username/arbitrage-bot/CI)
-![Python Version](https://img.shields.io/badge/python-3.9+-blue)
-![License](https://img.shields.io/github/license/username/arbitrage-bot)
+## Features
 
-## 🚀 Key Features
+- Real-time arbitrage opportunity detection
+- Multi-DEX support (BaseSwap, Aerodrome)
+- Advanced price analysis and monitoring
+- Machine learning-based strategy optimization
+- Comprehensive monitoring dashboard
+- Risk management system
 
-### Multi-Network Support
-- Ethereum
-- Binance Smart Chain
-- Polygon
-- Arbitrum
-- Optimism
+## System Components
 
-### Intelligent Trading
-- Machine learning-powered strategy optimization
-- Real-time price monitoring
-- Cross-chain arbitrage detection
+- **Smart Contracts**: On-chain trading logic
+- **Price Analysis**: Real-time market data processing
+- **Trading Strategies**: Optimized trading algorithms
+- **Monitoring Dashboard**: Real-time system visibility
+- **Risk Management**: Trade validation and safety checks
 
-### Advanced Analytics
-- Performance tracking
-- Risk management
-- Detailed trading insights
+## Getting Started
 
-## 🛠 Technology Stack
+### Prerequisites
 
-### Languages
-- Python 3.9+
-- Solidity 0.8.x
-- JavaScript/TypeScript
+- Python 3.8+
+- Node.js 14+
+- Web3 provider
+- Base network access
 
-### Key Technologies
-- Web3.py
-- Hardhat
-- scikit-learn
-- XGBoost
-- Streamlit
+### Installation
 
-## 📦 Quick Installation
-
+1. Clone the repository:
 ```bash
-# Clone the repository
-git clone https://github.com/username/arbitrage-bot.git
-cd arbitrage-bot
+git clone [repository-url]
+cd arbitrage_bot
+```
 
-# Set up virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
+2. Install dependencies:
+```bash
 pip install -r requirements.txt
-npm install
 ```
 
-## 🖥 Usage
-
-### Start Dashboard
+3. Configure environment:
 ```bash
-python run_dashboard.py
+cp .env.example .env
+# Edit .env with your settings
 ```
 
-### Run Arbitrage Simulation
+### Running the System
+
+1. Start the main arbitrage bot:
 ```bash
-python scripts/backtesting.py
+python run.py
 ```
 
-## 📘 Documentation
-- [Quick Start Guide](QUICK_START_GUIDE.md)
-- [Assistant Onboarding](ASSISTANT_ONBOARDING.md)
-- [Contributing Guidelines](CONTRIBUTING.md)
+2. Launch the monitoring dashboard:
+```bash
+python -m dashboard.enhanced_app
+```
 
-## 🤝 Contributing
-We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+3. Access the dashboard at http://localhost:5002
 
-## 🔒 Security
-Security is our top priority. Please review our security guidelines and report any vulnerabilities responsibly.
+## Monitoring Dashboard
 
-## 📊 Performance Metrics
-- Avg. Arbitrage Opportunities: 50+ per day
-- Cross-Chain Success Rate: 85%
-- Minimal Latency: <100ms
+The system includes a comprehensive monitoring dashboard that provides:
 
-## 💡 Roadmap
-- [ ] Enhanced ML model integration
-- [ ] More blockchain network support
-- [ ] Decentralized governance features
+- Real-time price monitoring across DEXes
+- System performance metrics
+- Trading opportunity analysis
+- Health monitoring and alerts
 
-## 📜 License
+For detailed information about the dashboard, see [Dashboard Guide](docs/DASHBOARD_GUIDE.md).
+
+## Architecture
+
+The system is built with a modular architecture that separates concerns and allows for easy maintenance and upgrades. For detailed architecture information, see [System Architecture](docs/SYSTEM_ARCHITECTURE.md).
+
+## Configuration
+
+- Network settings in `configs/networks/`
+- Trading parameters in `config.yaml`
+- Environment variables in `.env`
+
+## Development
+
+### Project Structure
+
+```
+arbitrage_bot/
+├── abi/                    # Contract ABIs
+├── contracts/              # Smart contracts
+├── dashboard/             # Monitoring dashboard
+├── configs/               # Configuration files
+├── docs/                  # Documentation
+└── scripts/               # Utility scripts
+```
+
+### Testing
+
+Run the test suite:
+```bash
+python -m pytest
+```
+
+## Documentation
+
+- [System Architecture](docs/SYSTEM_ARCHITECTURE.md)
+- [Dashboard Guide](docs/DASHBOARD_GUIDE.md)
+- [Development Insights](docs/DEVELOPMENT_INSIGHTS.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+See [Contributing Guide](CONTRIBUTING.md) for more details.
+
+## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-- Blockchain developer community
-- Open-source contributors
-- DeFi innovation pioneers
+## Security
 
-## 📞 Contact
-- Email: arbitrage-bot-support@example.com
-- Discord: [Invite Link]
-- Twitter: [@ArbitrageBotDev]
+For security concerns, please email [security contact].
 
----
+## Support
 
-**Disclaimer**: Cryptocurrency trading involves significant risk. Use this bot responsibly and at your own risk.
+For support questions, please open an issue in the repository.
