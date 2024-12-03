@@ -36,7 +36,7 @@ class ArbitragePlatform:
         :param networks: Blockchain networks to monitor
         :param monitoring_interval: Monitoring interval in seconds
         """
-        self.networks = networks or ['ethereum', 'binance_smart_chain']
+        self.networks = networks or ['base']  # Default to Base network
         self.monitoring_interval = monitoring_interval
         
         # Explicitly convert NetworkName to str
@@ -137,8 +137,8 @@ def main() -> int:
     parser.add_argument(
         '--networks', 
         nargs='+', 
-        type=str,  # Use str to allow runtime validation
-        default=['ethereum', 'binance_smart_chain'],
+        type=str,
+        default=['base'],  # Changed default to Base
         help='Blockchain networks to monitor'
     )
     parser.add_argument(
@@ -153,14 +153,14 @@ def main() -> int:
     # Validate network names
     valid_networks: List[NetworkName] = []
     for network in args.networks:
-        if network in ['ethereum', 'binance_smart_chain', 'polygon']:
+        if network in ['base', 'ethereum', 'binance_smart_chain', 'polygon']:  # Added Base
             valid_networks.append(network)  # type: ignore
         else:
             logger.warning(f"Unsupported network: {network}. Skipping.")
     
     if not valid_networks:
         logger.error("No valid networks specified. Using default.")
-        valid_networks = ['ethereum', 'binance_smart_chain']
+        valid_networks = ['base']  # Changed default to Base
     
     platform = ArbitragePlatform(
         networks=valid_networks, 

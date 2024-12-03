@@ -3,6 +3,7 @@
 from typing import List, Dict, Any, Optional, Union, Literal, cast, TypedDict, TypeVar
 from enum import Enum
 import logging
+import sys
 from web3 import Web3
 from web3.contract import Contract
 import json
@@ -135,7 +136,7 @@ class ArbitrageStrategy(TradingStrategy):
                     self.logger.info(f"Initializing {dex} router at {config['address']}")
                     self.router_contracts[dex] = self.web3_client.eth.contract(
                         address=self.web3_client.to_checksum_address(config['address']),
-                        abi=json.dumps(config['abi'])
+                        abi=config['abi']
                     )
             
             for token, address in token_addresses.items():
@@ -259,8 +260,8 @@ class ArbitrageStrategy(TradingStrategy):
                             
                             # Estimate potential profit (simplified)
                             amount_in_usd = 1000  # $1000 trade size
-                            potential_profit_usd = amount_in_usd * (spread_percent / 100)
-                            gas_cost_usd = 5  # Estimated gas cost in USD
+                            potential_profit_usd = float(amount_in_usd * (spread_percent / 100))
+                            gas_cost_usd = float(5)  # Estimated gas cost in USD
                             net_profit_usd = potential_profit_usd - gas_cost_usd
                             
                             # Record opportunity
@@ -271,7 +272,7 @@ class ArbitrageStrategy(TradingStrategy):
                                 price_in=float(price_a),
                                 price_out=float(price_b),
                                 spread_percent=float(spread_percent),
-                                potential_profit_usd=float(potential_profit_usd),
+                                potential_profit_usd=potential_profit_usd,
                                 gas_cost_usd=gas_cost_usd,
                                 net_profit_usd=net_profit_usd
                             )

@@ -3,69 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbitrage Bot Dashboard</title>
+    <title>Base Network Arbitrage Monitor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 </head>
 <body>
     <header>
-        <h1>Multi-Network Arbitrage Bot Dashboard</h1>
+        <h1>Base Network Arbitrage Monitor</h1>
     </header>
 
     <main>
-        <div class="card">
-            <div class="card-header">
-                <h2>System Metrics</h2>
-            </div>
-            <div class="card-body">
-                <p>CPU Usage: <span id="cpu-usage">0.00</span>%</p>
-                <p>Memory Usage: <span id="memory-usage">0.00</span>%</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h2>Contract Information</h2>
-            </div>
-            <div class="card-body">
-                <p>Network: <span id="network">-</span></p>
-                <p>Contract Address: <span id="contract-address">-</span></p>
-                <p>Balance: <span id="balance">0.00</span> ETH</p>
-                <p>Total Transactions: <span id="transaction-count">0</span></p>
+        <div class="metrics">
+            <div class="card">
+                <div class="card-header">
+                    <h2>System Status</h2>
+                </div>
+                <div class="card-body">
+                    <div class="metric">
+                        <div class="metric-value" id="cpu-usage">0.00%</div>
+                        <div class="metric-label">CPU Usage</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" id="memory-usage">0.00%</div>
+                        <div class="metric-label">Memory Usage</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header">
-                <h2>Profit Statistics</h2>
-            </div>
-            <div class="card-body">
-                <p>Total Profit: <span id="total-profit">0.00</span> ETH</p>
-                <p>Total Cost: <span id="total-cost">0.00</span> ETH</p>
-                <p>Net Profit: <span id="net-profit">0.00</span> ETH</p>
-                <p>Average Gas Price: <span id="avg-gas-price">0.00</span> Gwei</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h2>Recent Transactions</h2>
+                <h2>Price Monitoring</h2>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Hash</th>
-                            <th>Block</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Value (ETH)</th>
-                            <th>Gas Used</th>
-                            <th>Gas Price (Gwei)</th>
-                            <th>Status</th>
+                            <th>Pair</th>
+                            <th>BaseSwap Price</th>
+                            <th>Aerodrome Price</th>
+                            <th>Spread (%)</th>
+                            <th>Last Updated</th>
                         </tr>
                     </thead>
-                    <tbody id="transactions">
+                    <tbody id="price-data">
+                        <!-- Price data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Network Stats</h2>
+            </div>
+            <div class="card-body">
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-value" id="gas-price">0.00</div>
+                        <div class="metric-label">Gas Price (Gwei)</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" id="block-number">0</div>
+                        <div class="metric-label">Latest Block</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Recent Opportunities</h2>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Token Pair</th>
+                            <th>Direction</th>
+                            <th>Spread (%)</th>
+                            <th>Gas Cost (USD)</th>
+                            <th>Potential Profit (USD)</th>
+                            <th>Net Profit (USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="opportunities">
+                        <!-- Opportunities will be inserted here -->
                     </tbody>
                 </table>
             </div>
@@ -73,50 +97,72 @@
     </main>
 
     <script>
-        const socket = io();
-
+        const socket = io('/dashboard');
+        
         socket.on('connect', () => {
-            console.log('Connected to server');
+            console.log('Connected to monitoring server');
+            socket.emit('request_update');
         });
 
         socket.on('stats_update', (data) => {
+            console.log('Received update:', data);
+            
             // Update system metrics
-            document.getElementById('cpu-usage').textContent = data.system_metrics.cpu_percent.toFixed(2);
-            document.getElementById('memory-usage').textContent = data.system_metrics.memory_percent.toFixed(2);
+            if (data.system_metrics) {
+                document.getElementById('cpu-usage').textContent = `${data.system_metrics.cpu_percent.toFixed(2)}%`;
+                document.getElementById('memory-usage').textContent = `${data.system_metrics.memory_percent.toFixed(2)}%`;
+            }
+            
+            // Update price data
+            if (data.price_data && data.price_data.length > 0) {
+                const tbody = document.getElementById('price-data');
+                tbody.innerHTML = '';
+                
+                data.price_data.forEach(pair => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${pair.pair}</td>
+                        <td>${pair.baseswap_price ? pair.baseswap_price.toFixed(6) : '-'}</td>
+                        <td>${pair.aerodrome_price ? pair.aerodrome_price.toFixed(6) : '-'}</td>
+                        <td>${pair.spread ? pair.spread.toFixed(2) : '-'}%</td>
+                        <td>${new Date(pair.timestamp * 1000).toLocaleTimeString()}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
 
-            // Update contract info
-            document.getElementById('network').textContent = data.network;
-            document.getElementById('contract-address').textContent = data.contract_address;
-            document.getElementById('balance').textContent = data.balance.toFixed(6);
-            document.getElementById('transaction-count').textContent = data.transaction_count;
+            // Update opportunities
+            if (data.performance && data.performance.recent_trades) {
+                const tbody = document.getElementById('opportunities');
+                tbody.innerHTML = '';
+                
+                data.performance.recent_trades.forEach(trade => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${new Date(trade.timestamp * 1000).toLocaleTimeString()}</td>
+                        <td>${trade.token_pair}</td>
+                        <td>${trade.direction}</td>
+                        <td>${trade.spread_percent.toFixed(2)}%</td>
+                        <td>${trade.gas_cost_usd.toFixed(6)}</td>
+                        <td>${trade.potential_profit_usd.toFixed(6)}</td>
+                        <td>${trade.net_profit_usd.toFixed(6)}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
 
-            // Update profit stats
-            document.getElementById('total-profit').textContent = data.stats.total_profit.toFixed(6);
-            document.getElementById('total-cost').textContent = data.stats.total_cost.toFixed(6);
-            document.getElementById('net-profit').textContent = data.stats.net_profit.toFixed(6);
-            document.getElementById('avg-gas-price').textContent = data.stats.avg_gas_price.toFixed(2);
-
-            // Update transactions
-            const tbody = document.getElementById('transactions');
-            tbody.innerHTML = '';
-
-            data.transactions.forEach(tx => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td><a href="https://sepolia.etherscan.io/tx/${tx.hash}" target="_blank">${tx.hash.substring(0, 10)}...</a></td>
-                    <td>${tx.block}</td>
-                    <td>${tx.from.substring(0, 10)}...</td>
-                    <td>${tx.to.substring(0, 10)}...</td>
-                    <td>${tx.value.toFixed(6)}</td>
-                    <td>${tx.gas_used}</td>
-                    <td>${tx.gas_price.toFixed(2)}</td>
-                    <td>${tx.success ? '✓' : '✗'}</td>
-                `;
-                tbody.appendChild(row);
-            });
+            // Update network stats
+            if (data.health && data.health.trading_metrics) {
+                document.getElementById('gas-price').textContent = data.health.gas_price || '0.00';
+                document.getElementById('block-number').textContent = data.health.block_number || '0';
+            }
         });
 
-        // Request updates every 5 seconds
+        socket.on('error', (error) => {
+            console.error('WebSocket error:', error);
+        });
+
+        // Request updates periodically
         setInterval(() => {
             socket.emit('request_update');
         }, 5000);

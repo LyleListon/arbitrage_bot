@@ -160,5 +160,16 @@ def get_rpc_endpoint(
     """
     return quick_config.get_endpoint(network, network_type, priority)
 
-# Rapid deployment example
 if __name__ == "__main__":
+    # Example usage
+    ethereum_endpoint = get_rpc_endpoint('ethereum')
+    if ethereum_endpoint:
+        print(f"Ethereum mainnet endpoint: {ethereum_endpoint}")
+    
+    bsc_testnet = get_rpc_endpoint('binance_smart_chain', 'testnet')
+    if bsc_testnet:
+        print(f"BSC testnet endpoint: {bsc_testnet}")
+    
+    polygon_fallback = get_rpc_endpoint('polygon', 'mainnet', 'fallback')
+    if polygon_fallback:
+        print(f"Polygon fallback endpoint: {polygon_fallback}")
