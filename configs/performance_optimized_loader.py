@@ -130,20 +130,21 @@ class PerformanceOptimizedConfigLoader:
         """
         try:
             # Reload configuration if needed
-        if self._should_reload_config():
-            with self._lock:
-                self._config = self._load_config()
-                self._last_load_time = time.time()
-        
-        network_config: Dict[str, Any] = self._config.get(network, {})
-        network_type_config: Dict[str, Any] = network_config.get(network_type, {})
-        endpoint: Optional[str] = network_type_config.get(priority)
-        
-        return self._substitute_env_vars(endpoint) if endpoint else None
-        
+            if self._should_reload_config():
+                with self._lock:
+                    self._config = self._load_config()
+                    self._last_load_time = time.time()
+            
+            network_config: Dict[str, Any] = self._config.get(network, {})
+            network_type_config: Dict[str, Any] = network_config.get(network_type, {})
+            endpoint: Optional[str] = network_type_config.get(priority)
+            
+            return self._substitute_env_vars(endpoint) if endpoint else None
+            
         except Exception as e:
             print(f"Endpoint retrieval error: {e}")
-            return None    
+            return None
+    
     def get_endpoint(
         self, 
         network: NetworkName, 

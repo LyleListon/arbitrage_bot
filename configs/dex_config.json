@@ -1,4 +1,52 @@
 {
-  "networks": ["arbitrum", "ethereum", "binance_smart_chain"],
-  "dexes": ["pancakeswap", "sushiswap", "camelot", "uniswap"]
+  "networks": ["base"],
+  "dexes": {
+    "uniswap_v3": {
+      "factory": "0x33128a8fC17869897dcE68Ed026d694621f6FDfD",
+      "quoter": "0x3d4e44Eb1374240CE5F1B871ab261CD16335B76a",
+      "type": "UniswapV3",
+      "pools": {
+        "WETH/USDC": {
+          "address": "0xb2cc224c1c9feE385f8ad6a55b4d94E92359DC59",
+          "token0": "0x4200000000000000000000000000000000000006",
+          "token1": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+          "fee": 100,
+          "token0_symbol": "WETH",
+          "token1_symbol": "USDC"
+        }
+      }
+    }
+  },
+  "pairs": [
+    {
+      "name": "WETH/USDC",
+      "token0": "WETH",
+      "token1": "USDC",
+      "min_profit_threshold": "0.002",
+      "max_trade_size": "0.5",
+      "gas_limit": 350000
+    }
+  ],
+  "tokens": {
+    "WETH": {
+      "address": "0x4200000000000000000000000000000000000006",
+      "decimals": 18,
+      "min_amount": "0.05"
+    },
+    "USDC": {
+      "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "decimals": 6,
+      "min_amount": "100"
+    }
+  },
+  "settings": {
+    "update_interval_ms": 500,
+    "min_profit_threshold": "0.002",
+    "max_slippage": "0.002",
+    "max_gas_price": "0.5",
+    "retry_delay": 1000,
+    "max_retries": 3,
+    "health_check_interval": 60,
+    "cleanup_interval": 86400
+  }
 }

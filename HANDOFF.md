@@ -1,5 +1,17 @@
 # Arbitrage Bot Handoff Notes
 
+## Running the Bot
+```bash
+python arbitrage_bot.py
+```
+
+Make sure you have:
+1. All required dependencies installed (from requirements.txt)
+2. Valid .env.mainnet file with:
+   - BASE_RPC_URL
+   - PRIVATE_KEY
+   - Other configuration parameters
+
 ## Current Status (2024-12-04)
 - Bot is actively monitoring WETH/USDC prices on Base
 - Finding opportunities with ~0.27% price differences (10 USDC spread)
@@ -37,3 +49,4 @@
 - Bot is running with proper error handling and graceful shutdown
 - All critical paths are logged for monitoring
 - Performance metrics are being tracked and reported
+- Logs are written to arbitrage.log for debugging

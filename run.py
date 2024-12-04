@@ -3,10 +3,10 @@ import sys
 import argparse
 import logging
 from typing import Optional, List, Union
+import os
 
 # Import core components
 from dashboard.monitoring import ArbitragePlatformMonitor
-from configs.performance_optimized_loader import get_rpc_endpoint
 from dashboard.trading_strategies import TradingStrategyManager, NetworkName
 
 # Configure logging
@@ -19,6 +19,11 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger('ArbitragePlatformRunner')
+
+# Set environment variables for RPC URLs
+os.environ['BASE_RPC_URL'] = 'https://mainnet.base.org'
+os.environ['BASE_BACKUP_RPC_1'] = 'https://base.gateway.tenderly.co'
+os.environ['BASE_BACKUP_RPC_2'] = 'https://base-mainnet.infura.io/v3/863c326dab1a444dba3f41ae7a07ccce'
 
 class ArbitragePlatform:
     """
@@ -58,11 +63,12 @@ class ArbitragePlatform:
         logger.info("Validating network connectivity...")
         
         for network in self.networks:
-            endpoint = get_rpc_endpoint(network)
-            if not endpoint:
-                logger.error(f"No valid RPC endpoint found for {network}")
-                return False
-            logger.info(f"{network.capitalize()} Endpoint: {endpoint}")
+            if network == 'base':
+                endpoint = os.getenv('BASE_RPC_URL')
+                if not endpoint:
+                    logger.error(f"No valid RPC endpoint found for {network}")
+                    return False
+                logger.info(f"{network.capitalize()} Endpoint: {endpoint}")
         
         return True
     

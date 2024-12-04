@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{bb446029-e64c-45b2-a377-d34cb53ac7d0}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>run.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <TestFramework>Pytest</TestFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="arbitrage_bot_dashboard.egg-info\dependency_links.txt" />
+    <Content Include="arbitrage_bot_dashboard.egg-info\entry_points.txt" />
+    <Content Include="arbitrage_bot_dashboard.egg-info\requires.txt" />
+    <Content Include="arbitrage_bot_dashboard.egg-info\SOURCES.txt" />
+    <Content Include="arbitrage_bot_dashboard.egg-info\top_level.txt" />
+    <Content Include="dashboard\abi\contracts\dummy.txt" />
+    <Content Include="dashboard\Oracle_JDK-23\conf\security\policy\README.txt" />
+    <Content Include="dashboard\requirements.txt" />
+    <Content Include="dashboard\setup.js" />
+    <Content Include="dashboard\static\css\style.css" />
+    <Content Include="dashboard\static\css\styles.css" />
+    <Content Include="dashboard\static\favicon.ico" />
+    <Content Include="dashboard\static\img\icon.png" />
+    <Content Include="dashboard\static\js\chart-config.js" />
+    <Content Include="dashboard\static\js\core\BaseModule.js" />
+    <Content Include="dashboard\static\js\core\components\Container.js" />
+    <Content Include="dashboard\static\js\core\ModuleRegistry.js" />
+    <Content Include="dashboard\static\js\dashboard.js" />
+    <Content Include="dashboard\static\js\modules\AnalyticsModule.js" />
+    <Content Include="dashboard\static\js\network-metrics.js" />
+    <Content Include="dashboard\templates\dashboard.html" />
+    <Content Include="dashboard\templates\index.html" />
+    <Content Include="docs\images\recover.png" />
+    <Content Include="docs\images\Screenshot 2024-11-02 170248.png" />
+    <Content Include="docs\images\Screenshot 2024-11-02 171055.png" />
+    <Content Include="docs\images\Screenshot 2024-11-02 171210.png" />
+    <Content Include="docs\images\Screenshot 2024-11-02 171324.png" />
+    <Content Include="docs\images\Screenshot 2024-11-02 171421.png" />
+    <Content Include="docs\images\wallet1.png" />
+    <Content Include="docs\images\wallet2.png" />
+    <Content Include="docs\images\walletbal.png" />
+    <Content Include="docs\images\walletproof.png" />
+    <Content Include="hardhat.config.js" />
+    <Content Include="migrations\1_deploy_contracts.js" />
+    <Content Include="migrations\1_initial_migration.js" />
+    <Content Include="migrations\2_deploy_registries.js" />
+    <Content Include="requirements.txt" />
+    <Content Include="scripts\add_liquidity.js" />
+    <Content Include="scripts\add_pool_liquidity.js" />
+    <Content Include="scripts\analyze_opportunities.js" />
+    <Content Include="scripts\approve_and_swap.js" />
+    <Content Include="scripts\approve_tokens.js" />
+    <Content Include="scripts\check_arbitrage.js" />
+    <Content Include="scripts\check_arbitrum_pools.js" />
+    <Content Include="scripts\check_balance.js" />
+    <Content Include="scripts\check_balances.js" />
+    <Content Include="scripts\check_btc_balance.js" />
+    <Content Include="scripts\check_dex_registry.js" />
+    <Content Include="scripts\check_key.js" />
+    <Content Include="scripts\check_liquidity.js" />
+    <Content Include="scripts\check_pairs.js" />
+    <Content Include="scripts\check_pathfinder.js" />
+    <Content Include="scripts\check_pool.js" />
+    <Content Include="scripts\check_quote.js" />
+    <Content Include="scripts\check_token_balances.js" />
+    <Content Include="scripts\check_uniswap_v3_pools.js" />
+    <Content Include="scripts\check_v2_pool.js" />
+    <Content Include="scripts\create_pairs.js" />
+    <Content Include="scripts\create_uniswap_v3_pools.js" />
+    <Content Include="scripts\create_weth_usdc_pool.js" />
+    <Content Include="scripts\deploy.js" />
+    <Content Include="scripts\deploy_arbitrage.js" />
+    <Content Include="scripts\deploy_arbitrage_bot_v5.js" />
+    <Content Include="scripts\deploy_arbitrage_factory.js" />
+    <Content Include="scripts\deploy_bridge.js" />
+    <Content Include="scripts\deploy_cross_chain_swap.js" />
+    <Content Include="scripts\deploy_dex_registry.js" />
+    <Content Include="scripts\deploy_mainnet_v5.js" />
+    <Content Include="scripts\deploy_new_pathfinder.js" />
+    <Content Include="scripts\deploy_pathfinder.js" />
+    <Content Include="scripts\deploy_quote_manager.js" />
+    <Content Include="scripts\deploy_sepolia.js" />
+    <Content Include="scripts\deploy_v5.js" />
+    <Content Include="scripts\direct_swap.js" />
+    <Content Include="scripts\execute_arbitrage.js" />
+    <Content Include="scripts\get_test_tokens.js" />
+    <Content Include="scripts\goerli_setup.js" />
+    <Content Include="scripts\initialize_pools.js" />
+    <Content Include="scripts\list_all_tokens.js" />
+    <Content Include="scripts\monitor_deployment.js" />
+    <Content Include="scripts\monitor_mainnet.js" />
+    <Content Include="scripts\monitor_opportunities.js" />
+    <Content Include="scripts\monitor_schedule.js" />
+    <Content Include="scripts\pancakeswap_setup.js" />
+    <Content Include="scripts\pause_bot.js" />
+    <Content Include="scripts\register_dexes.js" />
+    <Content Include="scripts\register_price_feeds.js" />
+    <Content Include="scripts\run_arbitrage.js" />
+    <Content Include="scripts\setup_uniswap_v3.js" />
+    <Content Include="scripts\setup_uniswap_v3_pools.js" />
+    <Content Include="scripts\swap_for_tokens.js" />
+    <Content Include="scripts\swap_weth_to_usdc.js" />
+    <Content Include="scripts\test_connection.js" />
+    <Content Include="scripts\test_connection_web3.js" />
+    <Content Include="scripts\unpause_bot.js" />
+    <Content Include="scripts\update_config_goerli.js" />
+    <Content Include="scripts\update_dex_registry.js" />
+    <Content Include="scripts\update_pathfinder.js" />
+    <Content Include="scripts\update_pathfinder_registry.js" />
+    <Content Include="scripts\update_quote_manager.js" />
+    <Content Include="scripts\verify_arbitrage.js" />
+    <Content Include="scripts\verify_deployment.js" />
+    <Content Include="scripts\verify_key.js" />
+    <Content Include="scripts\verify_routers.js" />
+    <Content Include="scripts\verify_sepolia.js" />
+    <Content Include="scripts\verify_tokens.js" />
+    <Content Include="scripts\verify_uniswap_v3.js" />
+    <Content Include="scripts\wrap_eth.js" />
+    <Content Include="scripts\wrap_eth_arbitrum.js" />
+    <Content Include="setup.js" />
+    <Content Include="test\arbitrage_bot.test.js" />
+    <Content Include="test\basic_test.js" />
+    <Content Include="test\DEXRegistry.test.js" />
+    <Content Include="test\PriceFeedRegistry.test.js" />
+    <Content Include="test\price_feed_registry.test.js" />
+    <Content Include="test\test_arbitrage_bot.js" />
+    <Content Include="test\verify_rpc.js" />
+    <Content Include="truffle-config.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="config.py" />
+    <Compile Include="configs\config_loader.py" />
+    <Compile Include="configs\logging_config.py" />
+    <Compile Include="configs\performance_optimized_loader.py" />
+    <Compile Include="configs\quick_config_loader.py" />
+    <Compile Include="configs\Untitled-1.py" />
+    <Compile Include="dashboard\advanced_arbitrage_detector.py" />
+    <Compile Include="dashboard\advanced_dashboard.py" />
+    <Compile Include="dashboard\advanced_ml.py" />
+    <Compile Include="dashboard\advanced_rl.py" />
+    <Compile Include="dashboard\analytics.py" />
+    <Compile Include="dashboard\app.py" />
+    <Compile Include="dashboard\atomic_trade_executor.py" />
+    <Compile Include="dashboard\backtesting.py" />
+    <Compile Include="dashboard\blockchain_monitor.py" />
+    <Compile Include="dashboard\config\config_loader.py" />
+    <Compile Include="dashboard\config\__init__.py" />
+    <Compile Include="dashboard\contract_monitor.py" />
+    <Compile Include="dashboard\data_cleanup.py" />
+    <Compile Include="dashboard\data_collection.py" />
+    <Compile Include="dashboard\data_providers\base_provider.py" />
+    <Compile Include="dashboard\data_providers\factory.py" />
+    <Compile Include="dashboard\data_providers\live_provider.py" />
+    <Compile Include="dashboard\data_providers\simulated_provider.py" />
+    <Compile Include="dashboard\data_providers\__init__.py" />
+    <Compile Include="dashboard\db_migration.py" />
+    <Compile Include="dashboard\dependency_container.py" />
+    <Compile Include="dashboard\dependency_logging.py" />
+    <Compile Include="dashboard\dex_interface.py" />
+    <Compile Include="dashboard\enhanced_app.py" />
+    <Compile Include="dashboard\evolutionary_opt.py" />
+    <Compile Include="dashboard\feature_engineering.py" />
+    <Compile Include="dashboard\fix_db.py" />
+    <Compile Include="dashboard\gas_price_fetcher.py" />
+    <Compile Include="dashboard\hyperopt.py" />
+    <Compile Include="dashboard\import os.py" />
+    <Compile Include="dashboard\init_dashboard.py" />
+    <Compile Include="dashboard\init_db.py" />
+    <Compile Include="dashboard\interfaces.py" />
+    <Compile Include="dashboard\ml_dashboard.py" />
+    <Compile Include="dashboard\ml_models.py" />
+    <Compile Include="dashboard\ml_strategy.py" />
+    <Compile Include="dashboard\monitoring.py" />
+    <Compile Include="dashboard\neuroevolution.py" />
+    <Compile Include="dashboard\price_alerts.py" />
+    <Compile Include="dashboard\price_analysis.py" />
+    <Compile Include="dashboard\price_normalizer.py" />
+    <Compile Include="dashboard\rl_models.py" />
+    <Compile Include="dashboard\run.py" />
+    <Compile Include="dashboard\run_enhanced.py" />
+    <Compile Include="dashboard\strategy_analysis.py" />
+    <Compile Include="dashboard\tests\test_monitoring.py" />
+    <Compile Include="dashboard\tests\test_validation.py" />
+    <Compile Include="dashboard\test_api.py" />
+    <Compile Include="dashboard\token_optimizer.py" />
+    <Compile Include="dashboard\trade_executor.py" />
+    <Compile Include="dashboard\trading_controls.py" />
+    <Compile Include="dashboard\trading_strategies.py" />
+    <Compile Include="dashboard\validation.py" />
+    <Compile Include="dashboard\verify_db.py" />
+    <Compile Include="dashboard\verify_sepolia_feeds.py" />
+    <Compile Include="dashboard\web3_utils.py" />
+    <Compile Include="dashboard\__init__.py" />
+    <Compile Include="deploy.py" />
+    <Compile Include="run.py" />
+    <Compile Include="run_dashboard.py" />
+    <Compile Include="run_price_monitor.py" />
+    <Compile Include="scripts\advanced_simulation.py" />
+    <Compile Include="scripts\arbitrage_bot.py" />
+    <Compile Include="scripts\arbitrage_bot_ledger.py" />
+    <Compile Include="scripts\backtesting.py" />
+    <Compile Include="scripts\check_balance.py" />
+    <Compile Include="scripts\check_btc_balance.py" />
+    <Compile Include="scripts\check_etherscan.py" />
+    <Compile Include="scripts\check_gas.py" />
+    <Compile Include="scripts\check_mainnet_balance.py" />
+    <Compile Include="scripts\check_mainnet_readiness.py" />
+    <Compile Include="scripts\check_ownership.py" />
+    <Compile Include="scripts\check_pending_txs.py" />
+    <Compile Include="scripts\check_transactions.py" />
+    <Compile Include="scripts\cli.py" />
+    <Compile Include="scripts\compile_v2.py" />
+    <Compile Include="scripts\config.py" />
+    <Compile Include="scripts\cross_chain_handler.py" />
+    <Compile Include="scripts\dashboard.py" />
+    <Compile Include="scripts\database.py" />
+    <Compile Include="scripts\deploy.py" />
+    <Compile Include="scripts\deploy_final.py" />
+    <Compile Include="scripts\deploy_fresh_mock.py" />
+    <Compile Include="scripts\deploy_mainnet.py" />
+    <Compile Include="scripts\deploy_mock.py" />
+    <Compile Include="scripts\deploy_mock_feed.py" />
+    <Compile Include="scripts\deploy_mock_v2.py" />
+    <Compile Include="scripts\deploy_to_mainnet.py" />
+    <Compile Include="scripts\deploy_with_chainlink.py" />
+    <Compile Include="scripts\dex_interactions.py" />
+    <Compile Include="scripts\exchange_handler.py" />
+    <Compile Include="scripts\generate_mainnet_wallet.py" />
+    <Compile Include="scripts\generate_testnet_wallet.py" />
+    <Compile Include="scripts\init_db.py" />
+    <Compile Include="scripts\input_validation.py" />
+    <Compile Include="scripts\key_manager.py" />
+    <Compile Include="scripts\ledger_wallet.py" />
+    <Compile Include="scripts\logger.py" />
+    <Compile Include="scripts\ml_predictor.py" />
+    <Compile Include="scripts\mock_data_generator.py" />
+    <Compile Include="scripts\monitoring.py" />
+    <Compile Include="scripts\monitor_advanced.py" />
+    <Compile Include="scripts\monitor_mainnet.py" />
+    <Compile Include="scripts\monitor_market.py" />
+    <Compile Include="scripts\monitor_prices.py" />
+    <Compile Include="scripts\opportunity_predictor.py" />
+    <Compile Include="scripts\performance_tracker.py" />
+    <Compile Include="scripts\prepare_mainnet.py" />
+    <Compile Include="scripts\price_feed_updater.py" />
+    <Compile Include="scripts\rate_limiter.py" />
+    <Compile Include="scripts\risk_management.py" />
+    <Compile Include="scripts\run_testnet.py" />
+    <Compile Include="scripts\secure_environment.py" />
+    <Compile Include="scripts\security_check.py" />
+    <Compile Include="scripts\setup_environment.py" />
+    <Compile Include="scripts\setup_environment_v2.py" />
+    <Compile Include="scripts\setup_mock_feeds.py" />
+    <Compile Include="scripts\setup_mock_prices.py" />
+    <Compile Include="scripts\setup_mock_prices_v2.py" />
+    <Compile Include="scripts\setup_mock_prices_v3.py" />
+    <Compile Include="scripts\setup_mock_prices_v4.py" />
+    <Compile Include="scripts\setup_mock_prices_v5.py" />
+    <Compile Include="scripts\setup_mock_prices_v6.py" />
+    <Compile Include="scripts\setup_price_feeds.py" />
+    <Compile Include="scripts\simulate_opportunities.py" />
+    <Compile Include="scripts\simulate_test_trade.py" />
+    <Compile Include="scripts\simulate_trade.py" />
+    <Compile Include="scripts\test_alchemy.py" />
+    <Compile Include="scripts\test_alchemy_connection.py" />
+    <Compile Include="scripts\test_alchemy_sdk.py" />
+    <Compile Include="scripts\test_bot.py" />
+    <Compile Include="scripts\test_ledger.py" />
+    <Compile Include="scripts\test_ledger_blue.py" />
+    <Compile Include="scripts\test_ledger_cli.py" />
+    <Compile Include="scripts\test_ledger_direct.py" />
+    <Compile Include="scripts\test_ledger_interface.py" />
+    <Compile Include="scripts\test_ledger_path.py" />
+    <Compile Include="scripts\test_ledger_signing.py" />
+    <Compile Include="scripts\test_ledger_simple.py" />
+    <Compile Include="scripts\test_ledger_win.py" />
+    <Compile Include="scripts\test_mainnet_simulation.py" />
+    <Compile Include="scripts\test_mock.py" />
+    <Compile Include="scripts\test_price_feed.py" />
+    <Compile Include="scripts\test_price_feeds.py" />
+    <Compile Include="scripts\test_rpc.py" />
+    <Compile Include="scripts\test_transaction.py" />
+    <Compile Include="scripts\update_bot_feed.py" />
+    <Compile Include="scripts\verify_bot_setup.py" />
+    <Compile Include="scripts\verify_chainlink_feeds.py" />
+    <Compile Include="scripts\verify_deployment.py" />
+    <Compile Include="scripts\verify_deployment_final.py" />
+    <Compile Include="scripts\verify_final_setup.py" />
+    <Compile Include="scripts\verify_holesky_addresses.py" />
+    <Compile Include="scripts\verify_mainnet_config.py" />
+    <Compile Include="scripts\verify_mock_feed.py" />
+    <Compile Include="scripts\verify_prices.py" />
+    <Compile Include="scripts\__init__.py" />
+    <Compile Include="setup.py" />
+    <Compile Include="test\test_dex_interactions.py" />
+    <Compile Include="update_project.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="arbitrage_bot_dashboard.egg-info" />
+    <Folder Include="configs" />
+    <Folder Include="dashboard" />
+    <Folder Include="dashboard\abi\" />
+    <Folder Include="dashboard\abi\contracts" />
+    <Folder Include="dashboard\config" />
+    <Folder Include="dashboard\data_providers" />
+    <Folder Include="dashboard\Oracle_JDK-23\" />
+    <Folder Include="dashboard\Oracle_JDK-23\conf\" />
+    <Folder Include="dashboard\Oracle_JDK-23\conf\security\" />
+    <Folder Include="dashboard\Oracle_JDK-23\conf\security\policy" />
+    <Folder Include="dashboard\static" />
+    <Folder Include="dashboard\static\css" />
+    <Folder Include="dashboard\static\img" />
+    <Folder Include="dashboard\static\js" />
+    <Folder Include="dashboard\static\js\core" />
+    <Folder Include="dashboard\static\js\core\components" />
+    <Folder Include="dashboard\static\js\modules" />
+    <Folder Include="dashboard\templates" />
+    <Folder Include="dashboard\tests" />
+    <Folder Include="docs\" />
+    <Folder Include="docs\images" />
+    <Folder Include="migrations" />
+    <Folder Include="scripts" />
+    <Folder Include="test" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Description>env (Python 3.10)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <Version>3.10</Version>
+      <Architecture>X64</Architecture>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
