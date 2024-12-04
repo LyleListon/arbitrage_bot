@@ -1,0 +1,14 @@
+Flask==3.1.0
+Flask-SocketIO==5.4.1
+Flask-CORS==5.0.0
+Flask==3.1.0
+Flask-SocketIO==5.4.1
+Flask-CORS==5.0.0
+python-dotenv==1.0.1
+web3==7.5.0
+PyYAML==6.0.2
+psutil==6.1.0
+gevent==24.11.1
+requests==2.32.3
+gevent==24.11.1
+requests==2.32.3

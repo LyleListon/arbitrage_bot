@@ -1,10 +1,8 @@
-# Core dependencies
-Flask==3.1.0
-Flask-SocketIO==5.4.1
-Flask-CORS==5.0.0
-python-dotenv==1.0.1
-gevent==24.11.1
-gevent-websocket==0.10.1
+# Dashboard
+streamlit==1.29.0
+plotly==5.18.0
+pandas==2.2.0
+numpy==1.26.3
 
 # Web3 and blockchain
 web3==7.6.0
@@ -13,20 +11,18 @@ eth-utils==5.1.0
 
 # System monitoring
 psutil==6.1.0
-python-engineio==4.10.1
-python-socketio==5.11.4
 
-# Database
-SQLAlchemy==2.0.36
+# Utilities
+python-dotenv==1.0.1
+requests==2.32.3
 
-# Testing and development
-pytest==8.3.4
+
 pytest-cov==6.0.0
 black==24.10.0
 flake8==7.1.1
 
 # Utilities
 requests==2.32.3
-aiohttp==3.11.9
+
 asyncio==3.4.3
 dataclasses-json==0.6.7
