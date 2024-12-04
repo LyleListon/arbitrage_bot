@@ -16,14 +16,13 @@ psutil==6.1.0
 python-dotenv==1.0.1
 requests==2.32.3
 
-# Development and testing
-pytest==8.3.3
+
 pytest-cov==6.0.0
 black==24.10.0
 flake8==7.1.1
 
 # Utilities
 requests==2.32.3
-aiohttp==3.11.2
+
 asyncio==3.4.3
 dataclasses-json==0.6.7
